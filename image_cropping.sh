@@ -7,6 +7,8 @@
 #SBATCH --job-name=CropImg
 #SBATCH --output=%j_%x.out
 #SBATCH --error=%j_%x.err
+#SBATCH --mail-user=Andrew.Tian@UHN.ca
+#SBATCH --mail-type=ALL
 
 # ---------------------------------------------------------------------------------------------
 echo "Prepare environment"

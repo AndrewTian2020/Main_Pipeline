@@ -1,11 +1,13 @@
 #!/bin/bash
 #SBATCH --nodes=1
 #SBATCH --gpus-per-node=h100:1
-#SBATCH --mem=50G
-#SBATCH --time=2-23:50:00
+#SBATCH --mem=32G
+#SBATCH --time=12:00:00
 #SBATCH --job-name=MN
 #SBATCH --output=%j-%x.out
 #SBATCH --error=%j-%x.err
+#SBATCH --mail-user=Andrew.Tian@UHN.ca
+#SBATCH --mail-type=ALL
 
 # ---------------------------------------------------------------------------------------------
 echo "Create a virtual env to run"
