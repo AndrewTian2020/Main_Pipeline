@@ -5,6 +5,8 @@
 #SBATCH --job-name=SplitImg
 #SBATCH --output=%j-%x.out
 #SBATCH --error=%j-%x.err
+#SBATCH --mail-user=Andrew.Tian@UHN.ca
+#SBATCH --mail-type=ALL
 
 # Script to split image files based on filename patterns
 # Author: Shuye Pu
