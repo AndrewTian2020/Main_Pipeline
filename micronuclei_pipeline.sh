@@ -210,11 +210,8 @@ for input in $inputs; do
     
     # Calculate time allocation
     count=$(ls "$input" | wc -l)
-    echo $count
     secs=$((count * 60))
-    echo $secs
     tot_time=$(convertsecs $secs)
-    echo $tot_time
 
     # Submit processing job
     JOB_ID=$(sbatch --time=$tot_time image_process.sh $input $output_path $MODE | awk '{print $4}')
