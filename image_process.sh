@@ -2,7 +2,6 @@
 #SBATCH --nodes=1
 #SBATCH --gpus-per-node=h100:1
 #SBATCH --mem=32G
-#SBATCH --time=12:00:00
 #SBATCH --job-name=MN
 #SBATCH --output=%j-%x.out
 #SBATCH --error=%j-%x.err
@@ -72,7 +71,6 @@ python $HOME/MicroNuclei_work/python/script/image_process.py \
     --dst $2 \
     --mode $3 \
     --conf 0.7
-
        
 # ---------------------------------------------------------------------------------------------
 echo "Save output"

@@ -187,8 +187,16 @@ log "Processing ${wp}-croptemp for micronuclei detection"
 log "Directory: ${CROP_DIR}"
 log "Output directory: ${OUTPUT_DIR}"
 
-
 inputs=$(ls -d ${CROP_DIR}/*_croptemp 2>/dev/null || echo "")
+
+# Function to convert time (in seconds) to hh:mm:ss format
+convertsecs() {
+    ((h=${1}/3600))
+    ((m=(${1}%3600)/60))
+    ((s=${1}%60))
+    printf "%02d:%02d:%02d\n" $h $m $s
+}
+
 # Process cropped images
 for input in $inputs; do
     output=$(basename $input "_croptemp").json
@@ -200,8 +208,13 @@ for input in $inputs; do
         continue
     fi
     
+    # Calculate time allocation
+    count=$(ls "$input" | wc -l)
+    secs=$((count * 60))
+    tot_time=$(convertsecs $secs)
+
     # Submit processing job
-    JOB_ID=$(sbatch image_process.sh $input $output_path $MODE | awk '{print $4}')
+    JOB_ID=$(sbatch image_process.sh --time=$tot_time $input $output_path $MODE | awk '{print $4}')
     
     log "Submitted processing job for ${input} (Job ID: ${JOB_ID})"
     process_job_ids+=("$JOB_ID")
