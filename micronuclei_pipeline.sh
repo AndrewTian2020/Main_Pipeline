@@ -217,7 +217,7 @@ for input in $inputs; do
     echo $tot_time
 
     # Submit processing job
-    JOB_ID=$(sbatch image_process.sh --time=$tot_time $input $output_path $MODE | awk '{print $4}')
+    JOB_ID=$(sbatch --time=$tot_time image_process.sh $input $output_path $MODE | awk '{print $4}')
     
     log "Submitted processing job for ${input} (Job ID: ${JOB_ID})"
     process_job_ids+=("$JOB_ID")
